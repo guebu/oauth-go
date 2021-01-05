@@ -47,7 +47,7 @@ func (ur *oauthRepository) GetTokenByString(tokenString string) (*domain.AccessT
 
 	if response == nil || response.Response == nil {
 		// we run in a technical error situation, e.g. a timeout situation...
-		err := errors.NewInternalServerError("Invalid restclient response when trying to retrieve Access Token from oauth API!")
+		err := errors.NewInternalServerError("Invalid restclient response when trying to retrieve Access Token from oauth API!", nil)
 		logger.Error("Invalid restclient response when trying to retrieve Access Token from oauth API!", err, "Layer:Repo", "Func:Login", "Status:Error", "app:user")
 		return nil, err
 	}
@@ -62,7 +62,7 @@ func (ur *oauthRepository) GetTokenByString(tokenString string) (*domain.AccessT
 		err := json.Unmarshal(response.Bytes(), &apiErr)
 		if err != nil {
 			logger.Error("Invalid error interface when trying to retrieve Access Token Information from oauth API!", err, "app:user", "Layer:Repo", "Func:Login", "Status:Error")
-			return nil, errors.NewInternalServerError("Invalid error interface when trying to retrieve Access Token Information from oauth API!")
+			return nil, errors.NewInternalServerError("Invalid error interface when trying to retrieve Access Token Information from oauth API!", err)
 		}
 		logger.Info("Attempt to retreive Access Token Information from oauth API results in an error! Message: "+apiErr.AMessage, "app:user", "Layer:Repo", "Func:Login", "Status:Error")
 		return nil, &apiErr
@@ -72,7 +72,7 @@ func (ur *oauthRepository) GetTokenByString(tokenString string) (*domain.AccessT
 
 	if err:=json.Unmarshal(response.Bytes(), &at); err != nil {
 		logger.Error("Invalid Access Token Interface when trying to retreive Access Token Information...!", err, "app:user", "Layer:Repo", "Func:Login", "Status:Error")
-		return nil, errors.NewInternalServerError("Invalid Access Token Interface when trying to retreive Access Token Information...!")
+		return nil, errors.NewInternalServerError("Invalid Access Token Interface when trying to retreive Access Token Information...!", err)
 	}
 	logger.Info("End of retreiving Access Token information...", "app:user", "Layer:Repo", "Func:Login", "Status:End")
 	return &at, nil

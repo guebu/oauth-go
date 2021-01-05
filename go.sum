@@ -11,9 +11,8 @@ github.com/go-playground/universal-translator v0.17.0/go.mod h1:UkSxE5sNxxRwHyU+
 github.com/go-playground/validator/v10 v10.2.0/go.mod h1:uOYAAleCW8F/7oMFd6aG0GOhaH6EGOAJShg8Id5JGkI=
 github.com/golang/protobuf v1.3.3/go.mod h1:vzj43D7+SQXF/4pzW/hwtAqwc6iTitCiVSaWz5lYuqw=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
-github.com/guebu/common-utils v0.1.1 h1:sRtQHprkay3m+7bnCn6KBqzKqGdv4ZgxIDQOts6eahc=
-github.com/guebu/common-utils v0.1.1/go.mod h1:jvzE9CwrAnTUesT0uHQpvwMJOktTyznBCCrRJtpZ6r0=
-github.com/guebu/oauth-api v0.1.1 h1:EBkmPNu63nG/RXQZ0FsD7Eo8c57mICSGNRm2vBl9x0w=
+github.com/guebu/common-utils v0.2.0 h1:Av6TAu+v5xJp3AuZh3kWhErp4vBXNZvpyrvioX/npmE=
+github.com/guebu/common-utils v0.2.0/go.mod h1:l7PZPulYJSP6I+lNUu6X8lSR31m+JUxjzF95SBF9igs=
 github.com/json-iterator/go v1.1.9/go.mod h1:KdQUCv79m/52Kvf8AW2vK1V8akMuk1QjK/uOdHXbAo4=
 github.com/leodido/go-urn v1.2.0/go.mod h1:+8+nEpDfqqsY+g338gtMEUOtuK+4dEMhiQEgxpxOKII=
 github.com/mattn/go-isatty v0.0.12/go.mod h1:cbi8OIDigv2wuxKPP5vlRcQ1OAZbq2CE4Kysco4FUpU=

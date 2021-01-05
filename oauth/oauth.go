@@ -38,7 +38,7 @@ func IsPublic(request *http.Request) bool {
 func AuthenticateRequest(request *http.Request) *errors.ApplicationError {
 	logger.Info("Authenticating request is starting...", "app:ouath-go", "Layer:helper-service", "Func:AuthenticateRequest", "Status:Start")
 	if request == nil {
-		err := errors.NewInternalServerError("No Request information was transmitted!")
+		err := errors.NewInternalServerError("No Request information was transmitted!", nil)
 		logger.Error("No Request information was transmitted!", err, "app:ouath-go", "Layer:helper-service", "Func:AuthenticateRequest", "Status:Error")
 	}
 
@@ -46,7 +46,7 @@ func AuthenticateRequest(request *http.Request) *errors.ApplicationError {
 	bearerToken := request.Header.Get("Authorization")
 	if (bearerToken == "") {
 		logger.Info("No token information transmitted in request...", "app:ouath-go", "Layer:helper-service", "Func:GetUser", "Level:Info",  "State:Error")
-		apiErr := errors.NewBadRequestError("Token information must be transmitted inside the request!")
+		apiErr := errors.NewBadRequestError("Token information must be transmitted inside the request!", nil)
 		// c.JSON(apiErr.AStatusCode, apiErr)
 		// log.Printf("Controller-Error: BAD REQUEST - No token information transmitted!")
 		return apiErr
@@ -64,7 +64,7 @@ func AuthenticateRequest(request *http.Request) *errors.ApplicationError {
 
 	if oauthErr != nil {
 		logger.Info("Detailed token information couldn't be retreived form oauth API...", "Layer:Controller", "Func:GetUser", "Level:Info",  "State:Error")
-		apiErr := errors.NewInternalServerError("Detailed token information couldn't be retreived form oauth API...")
+		apiErr := errors.NewInternalServerError("Detailed token information couldn't be retreived form oauth API...", oauthErr)
 		// c.JSON(apiErr.AStatusCode, apiErr)
 		// log.Printf("Controller-Error: BAD REQUEST - No token information retreivable...!")
 		return apiErr
@@ -72,7 +72,7 @@ func AuthenticateRequest(request *http.Request) *errors.ApplicationError {
 
 	if accessToken.IsAlreadyExpired {
 		logger.Info("Access Token already expired!", "Layer:Controller", "Func:GetUser", "Level:Info",  "State:Error")
-		apiErr := errors.NewTokenExpiredError("Access Token already expired")
+		apiErr := errors.NewTokenExpiredError("Access Token already expired", nil)
 		// c.JSON(apiErr.AStatusCode, apiErr)
 		// log.Printf("Controller-Error: BAD REQUEST - No token information retreivable...!")
 		return apiErr
